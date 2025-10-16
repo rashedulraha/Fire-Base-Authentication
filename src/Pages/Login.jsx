@@ -1,8 +1,19 @@
+import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router";
 
 const Login = () => {
   return (
-    <div className="h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4 overflow-hidden">
+    <div className="h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4 overflow-hidden relative">
+      {/* Back to Home Button - Outside the card, top left */}
+      <div className="absolute top-6 left-6">
+        <Link
+          to="/"
+          className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition duration-300 bg-slate-800/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-slate-700">
+          <FaArrowLeft className="mr-2" />
+          Back to Home
+        </Link>
+      </div>
+
       <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
         <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
@@ -64,21 +75,12 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3 pt-2">
-            <div className="flex-3">
-              <button
-                type="submit"
-                className="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
-                Sign in
-              </button>
-            </div>
-            <div className="flex-1">
-              <Link
-                to={"/"}
-                className="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 rounded-lg transition duration-300 inline-block text-center">
-                Home
-              </Link>
-            </div>
+          <div className="flex-3">
+            <button
+              type="submit"
+              className="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+              Sign in
+            </button>
           </div>
         </form>
 

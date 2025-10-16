@@ -1,6 +1,12 @@
 import React from "react";
 
+import { FaFacebook } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaInstagramSquare } from "react-icons/fa";
+
 import logo from "../../assets/firebase-logo.png";
+import { Link } from "react-router";
 
 const Footer = () => {
   return (
@@ -22,26 +28,34 @@ const Footer = () => {
               businesses.
             </p>
             <div className="flex space-x-4">
-              <a
-                href="#"
+              <Link
+                to={"/"}
                 className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-cyan-500 hover:text-white transition duration-300">
-                <span className="text-lg">f</span>
-              </a>
-              <a
-                href="#"
+                <span className="text-lg">
+                  <FaFacebook />
+                </span>
+              </Link>
+              <Link
+                to={"/"}
                 className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-cyan-500 hover:text-white transition duration-300">
-                <span className="text-lg">t</span>
-              </a>
-              <a
-                href="#"
+                <span className="text-lg">
+                  <FaTwitter />
+                </span>
+              </Link>
+              <Link
+                to={"/"}
                 className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-cyan-500 hover:text-white transition duration-300">
-                <span className="text-lg">in</span>
-              </a>
-              <a
-                href="#"
+                <span className="text-lg">
+                  <FaLinkedin />
+                </span>
+              </Link>
+              <Link
+                to={"/"}
                 className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:bg-cyan-500 hover:text-white transition duration-300">
-                <span className="text-lg">ig</span>
-              </a>
+                <span className="text-lg">
+                  <FaInstagramSquare />
+                </span>
+              </Link>
             </div>
           </div>
 
@@ -52,39 +66,39 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="#"
+                <Link
+                  to={"/"}
                   className="text-slate-400 hover:text-cyan-400 transition duration-300">
                   Home
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to={"/"}
                   className="text-slate-400 hover:text-cyan-400 transition duration-300">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to={"/"}
                   className="text-slate-400 hover:text-cyan-400 transition duration-300">
                   Services
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to={"/"}
                   className="text-slate-400 hover:text-cyan-400 transition duration-300">
                   Portfolio
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to={"/"}
                   className="text-slate-400 hover:text-cyan-400 transition duration-300">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -121,9 +135,9 @@ const Footer = () => {
               <span>Designed with</span>
               <span className="text-cyan-400 mx-1">❤️</span>
               <span>by</span>
-              <a href="#" className="text-cyan-400 hover:text-cyan-300 ml-1">
+              <Link to={"/"} className="text-cyan-400 hover:text-cyan-300 ml-1">
                 Rashed
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -20,10 +20,10 @@ const Homepage = () => {
                 connections with your audience.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:-translate-y-1 shadow-lg shadow-cyan-500/20">
+                <button className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold py-2 px-8 rounded-lg transition duration-300 transform hover:-translate-y-1 shadow-lg shadow-cyan-500/20">
                   Get Started
                 </button>
-                <button className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 font-bold py-3 px-8 rounded-lg transition duration-300">
+                <button className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 font-bold py-2 px-8 rounded-lg transition duration-300">
                   Learn More
                 </button>
               </div>

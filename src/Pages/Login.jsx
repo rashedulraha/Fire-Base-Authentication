@@ -1,7 +1,26 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router";
+import { auth } from "../FireBaseAuth/Firebase.init";
+import { toast } from "react-toastify";
 
 const Login = () => {
+  const handleLogin = (event) => {
+    event.preventDefault();
+
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    // sign in with gmail and password
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        toast.success("Successfully Sing in");
+      })
+      .then((error) => {
+        toast.error(error.message);
+      });
+  };
   return (
     <div className="h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4 overflow-hidden relative">
       {/* Back to Home Button - Outside the card, top left */}
@@ -20,7 +39,7 @@ const Login = () => {
           <p className="text-slate-400">Sign in to your account</p>
         </div>
 
-        <form className="space-y-4">
+        <form onSubmit={handleLogin} className="space-y-4">
           <div>
             <label
               htmlFor="email"
@@ -28,11 +47,10 @@ const Login = () => {
               Email Address
             </label>
             <input
-              id="email"
+              name="email"
               type="email"
               className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
               placeholder="you@example.com"
-              required
             />
           </div>
 
@@ -43,18 +61,16 @@ const Login = () => {
               Password
             </label>
             <input
-              id="password"
+              name="password"
               type="password"
               className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
               placeholder="••••••••"
-              required
             />
           </div>
 
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <input
-                id="remember-me"
                 name="remember-me"
                 type="checkbox"
                 className="h-4 w-4 text-cyan-500 focus:ring-cyan-500 border-slate-600 rounded bg-slate-700"
@@ -78,7 +94,7 @@ const Login = () => {
           <div className="flex-3">
             <button
               type="submit"
-              className="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 rounded-lg transition duration-300">
+              className="btn w-full bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 rounded-lg transition duration-300 cursor-pointer ">
               Sign in
             </button>
           </div>

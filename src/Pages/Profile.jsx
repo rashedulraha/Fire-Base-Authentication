@@ -11,17 +11,15 @@ const Profile = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white">
-      {/* Back Button */}
-      <div className="container mx-auto px-6 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white relative">
+      <div className="absolute top-6 left-6">
         <Link
           to="/"
-          className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition duration-300">
+          className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition duration-300 bg-slate-800/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-slate-700">
           <FaArrowLeft className="mr-2" />
           Back to Home
         </Link>
       </div>
-
       {/* Profile Content */}
       <div className="container mx-auto px-6 py-8">
         <div className="max-w-md mx-auto">

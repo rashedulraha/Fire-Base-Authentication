@@ -1,7 +1,29 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router";
+import { auth } from "../FireBaseAuth/Firebase.init";
+import { toast, ToastContainer } from "react-toastify";
 
 const Register = () => {
+  const handleRegister = (event) => {
+    event.preventDefault();
+
+    // const name = event.target.name.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    // const confirmPassword = event.target.confirmPassword.value;
+
+    // console.log({ name, email, password, confirmPassword });
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        toast.success("Successfully registered");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
   return (
     <div className="h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4 overflow-hidden relative">
       {/* Back to Home Button - Outside the card, top left */}
@@ -20,31 +42,33 @@ const Register = () => {
           <p className="text-slate-400">Sign up to get started</p>
         </div>
 
-        <form className="space-y-4">
+        <form onSubmit={handleRegister} className="space-y-4">
           <div>
+            {/* person name */}
             <label
               htmlFor="name"
               className="block text-sm font-medium text-slate-300 mb-1">
               Full Name
             </label>
             <input
-              id="name"
               type="text"
+              name="name"
               className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
-              placeholder="John Doe"
+              placeholder="Full Name"
               required
             />
           </div>
 
           <div>
+            {/* Person email */}
             <label
               htmlFor="email"
               className="block text-sm font-medium text-slate-300 mb-1">
               Email Address
             </label>
             <input
-              id="email"
               type="email"
+              name="email"
               className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
               placeholder="you@example.com"
               required
@@ -52,13 +76,14 @@ const Register = () => {
           </div>
           <div className="flex gap-3 items-center">
             <div>
+              {/* person account password */}
               <label
                 htmlFor="password"
                 className="block text-sm font-medium text-slate-300 mb-1">
                 Password
               </label>
               <input
-                id="password"
+                name="password"
                 type="password"
                 className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                 placeholder="••••••••"
@@ -67,17 +92,17 @@ const Register = () => {
             </div>
 
             <div>
+              {/* Person account confirm password */}
               <label
                 htmlFor="confirmPassword"
                 className="block text-sm font-medium text-slate-300 mb-1">
                 Confirm Password
               </label>
               <input
-                id="confirmPassword"
+                name="confirmPassword"
                 type="password"
                 className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
                 placeholder="••••••••"
-                required
               />
             </div>
           </div>

@@ -30,11 +30,6 @@ const Navbar = () => {
               Profile
             </NavLink>
           </li>
-          <li>
-            <NavLink to={"/Login"} className="text-slate-300 font-medium ">
-              Login
-            </NavLink>
-          </li>
         </ul>
 
         <button className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-6 py-2 rounded-md font-semibold cursor-pointer transition duration-300 transform hover:scale-105">

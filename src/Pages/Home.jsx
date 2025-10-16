@@ -2,45 +2,81 @@ const Homepage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800 text-white">
       {/* Hero Section with Unique Design */}
-      <div className="container mx-auto px-6 py-20 md:py-32">
-        <div className="flex flex-col md:flex-row items-center justify-between">
-          <div className="md:w-1/2 mb-12 md:mb-0">
+      <div className="container mx-auto px-6 py-20">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+          {/* Left Content */}
+          <div className="lg:w-1/2">
             <div className="relative">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                <span className="block">Digital</span>
-                <span className="block text-cyan-400 mt-2">Innovation</span>
-                <span className="block mt-2">Starts Here</span>
+              <span className="inline-block px-4 py-1 bg-cyan-500/10 text-cyan-400 rounded-full text-sm font-medium mb-6">
+                DIGITAL INNOVATION
+              </span>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                Transforming Ideas into{" "}
+                <span className="text-cyan-400">Digital Reality</span>
               </h1>
-              <div className="h-1 w-24 bg-cyan-400 mb-6"></div>
-              <p className="text-lg text-slate-300 mb-8 max-w-lg">
-                We craft exceptional digital experiences that transform ideas
-                into reality. Simple, elegant, and powerful solutions for modern
-                businesses.
+              <p className="text-lg text-slate-300 mb-8 max-w-lg leading-relaxed">
+                We empower businesses with cutting-edge digital solutions that
+                drive growth, enhance efficiency, and create meaningful
+                connections with your audience.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:-translate-y-1">
-                  Explore Work
+                <button className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 font-bold py-3 px-8 rounded-lg transition duration-300 transform hover:-translate-y-1 shadow-lg shadow-cyan-500/20">
+                  Get Started
                 </button>
                 <button className="border-2 border-cyan-400 text-cyan-400 hover:bg-cyan-400 hover:text-slate-900 font-bold py-3 px-8 rounded-lg transition duration-300">
-                  Contact Us
+                  Learn More
                 </button>
               </div>
             </div>
           </div>
 
-          <div className="md:w-1/2 flex justify-center">
+          {/* Right Image */}
+          <div className="lg:w-1/2 flex justify-center">
             <div className="relative">
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 opacity-20 absolute -top-6 -right-6"></div>
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-cyan-400/30 flex items-center justify-center relative">
-                <div className="text-center">
-                  <div className="text-8xl mb-4"></div>
+              {/* Decorative elements */}
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-cyan-500/20 rounded-full blur-xl"></div>
+              <div className="absolute -bottom-6 -left-6 w-24 h-24 bg-blue-500/20 rounded-full blur-xl"></div>
+
+              {/* Main image */}
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/50">
+                <img
+                  src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                  alt="Digital Innovation"
+                  className="w-full h-auto object-cover"
+                />
+                {/* Image overlay effect */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/70 to-transparent"></div>
+
+                {/* Floating card */}
+                <div className="absolute bottom-6 left-6 bg-slate-800/80 backdrop-blur-sm p-4 rounded-xl border border-slate-700 max-w-xs">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center">
+                      <svg
+                        className="w-6 h-6 text-slate-900"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">Fast & Secure</p>
+                      <p className="text-slate-400 text-sm">
+                        Lightning performance
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       {/* Unique Features Section */}
       <div className="py-20 bg-slate-800/50 backdrop-blur-sm">
         <div className="container mx-auto px-6">

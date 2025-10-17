@@ -11,16 +11,23 @@ const Login = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    // sign in with gmail and password
+    const regEx =
+      /^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};:'",.<>\/?\\|`~]).+$/;
 
+    if (regEx.test(password)) {
+      console.log(regEx);
+    }
+
+    // sign in with gmail and password
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         toast.success("Successfully Sing in");
       })
       .then((error) => {
-        toast.error(error.message);
+        toast?.error(error.message);
       });
   };
+
   return (
     <div className="h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4 overflow-hidden relative">
       {/* Back to Home Button - Outside the card, top left */}

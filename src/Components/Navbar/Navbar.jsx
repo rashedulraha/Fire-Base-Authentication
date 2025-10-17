@@ -1,7 +1,10 @@
 import { Link, NavLink } from "react-router";
 import logo from "../../assets/firebase-logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthContext/AuthContext";
 
 const Navbar = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="bg-slate-900/80 backdrop-blur-sm border-b border-slate-800 py-3 sticky top-0 z-50">
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -38,7 +41,7 @@ const Navbar = () => {
         </ul>
 
         <button className="bg-cyan-500 hover:bg-cyan-400 text-slate-900 px-6 py-2 rounded-md font-semibold cursor-pointer transition duration-300 transform hover:scale-105">
-          <Link to={"/login"}>Sign in</Link>
+          <Link to={"/login"}>{user ? "Logout" : "Login"}</Link>
         </button>
       </div>
     </div>

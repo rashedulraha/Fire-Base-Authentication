@@ -5,9 +5,11 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../FireBaseAuth/Firebase.init";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState();
+
   // ! get current user
 
   //! create user
@@ -22,7 +24,8 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const connections = onAuthStateChanged(auth, (currentUser) => {
-      console.log("current user in auth state change", currentUser);
+      setUser(currentUser);
+      console.log(user);
     });
 
     return () => {
@@ -33,6 +36,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     createUser,
     signInUser,
+    user,
   };
 
   return <AuthContext value={authInfo}>{children}</AuthContext>;

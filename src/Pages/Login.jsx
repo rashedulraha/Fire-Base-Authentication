@@ -1,33 +1,31 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { FaArrowLeft } from "react-icons/fa";
+import { useContext } from "react";
+import { FaArrowLeft, FaEnvelopeOpen } from "react-icons/fa";
 import { Link } from "react-router";
-import { auth } from "../FireBaseAuth/Firebase.init";
+import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
+  const { signInUser } = useContext(AuthContext);
+  // console.log(signInUser);
+
+  //!  handleLogin function
   const handleLogin = (event) => {
     event.preventDefault();
-
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    const regEx =
-      /^(?=.{10,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};:'",.<>\/?\\|`~]).+$/;
-
-    if (regEx.test(password)) {
-      console.log(regEx);
-    }
-
-    // sign in with gmail and password
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        toast.success("Successfully Sing in");
+    signInUser(email, password)
+      .then((result) => {
+        console.log(result);
+        toast.success("successfully login ");
       })
-      .then((error) => {
-        toast?.error(error.message);
+      .catch((error) => {
+        console.log(error.message);
+        toast.error(error.message);
       });
   };
 
+  //
   return (
     <div className="h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4 overflow-hidden relative">
       {/* Back to Home Button - Outside the card, top left */}

@@ -1,12 +1,14 @@
 import { useContext } from "react";
-import { FaArrowLeft, FaEnvelopeOpen } from "react-icons/fa";
-import { Link } from "react-router";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link, useLocation } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
   const { signInUser } = useContext(AuthContext);
-  // console.log(signInUser);
+
+  const location = useLocation();
+  console.log(location);
 
   //!  handleLogin function
   const handleLogin = (event) => {

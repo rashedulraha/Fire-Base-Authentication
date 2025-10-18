@@ -1,121 +1,149 @@
 import { useContext } from "react";
-import { FaArrowLeft } from "react-icons/fa";
-import { Link, useLocation } from "react-router";
+import { FaArrowLeft, FaGoogle, FaFacebook } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { signInUser } = useContext(AuthContext);
-
+  const { signInUser, signInWithGoogle, signInWithFacebook } =
+    useContext(AuthContext);
   const location = useLocation();
-  console.log(location);
+  const navigate = useNavigate();
 
-  //!  handleLogin function
   const handleLogin = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
 
     signInUser(email, password)
-      .then((result) => {
-        console.log(result);
-        toast.success("successfully login ");
+      .then(() => {
+        toast.success("Successfully logged in");
+        navigate(location.state || "/");
       })
       .catch((error) => {
-        console.log(error.message);
         toast.error(error.message);
       });
   };
 
-  //
-  return (
-    <div className="h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4 overflow-hidden relative">
-      {/* Back to Home Button - Outside the card, top left */}
-      <div className="absolute top-6 left-6">
-        <Link
-          to="/"
-          className="inline-flex items-center text-cyan-400 hover:text-cyan-300 transition duration-300 bg-slate-800/50 backdrop-blur-sm px-4 py-2 rounded-lg border border-slate-700">
-          <FaArrowLeft className="mr-2" />
-          Back to Home
-        </Link>
-      </div>
+  const handleGoogleLogin = () => {
+    signInWithGoogle()
+      .then(() => {
+        toast.success("Successfully logged in with Google");
+        navigate(location.state || "/");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
 
-      <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 p-6 w-full max-w-md max-h-[90vh] overflow-y-auto">
-        <div className="text-center mb-6">
-          <h1 className="text-3xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-slate-400">Sign in to your account</p>
+  const handleFacebookLogin = () => {
+    signInWithFacebook()
+      .then(() => {
+        toast.success("Successfully logged in with Facebook");
+        navigate(location.state || "/");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
+  return (
+    <div className="h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4">
+      <div className="w-full max-w-md bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 p-5">
+        {/* Header */}
+        <div className="flex items-center justify-between mb-4">
+          <h1 className="text-2xl font-bold text-white">Login</h1>
+          <Link
+            to="/"
+            className="p-2 rounded-lg bg-slate-700/50 text-cyan-400 hover:bg-slate-700 transition-colors">
+            <FaArrowLeft />
+          </Link>
         </div>
 
+        <p className="text-slate-400 mb-5 text-sm">Sign in to your account</p>
+
+        {/* Login Form */}
         <form onSubmit={handleLogin} className="space-y-4">
           <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-slate-300 mb-1">
-              Email Address
-            </label>
+            <label className="block text-sm text-slate-300 mb-1">Email</label>
             <input
-              name="email"
               type="email"
-              className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+              name="email"
               placeholder="you@example.com"
+              className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
+              required
             />
           </div>
 
           <div>
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium text-slate-300 mb-1">
+            <label className="block text-sm text-slate-300 mb-1">
               Password
             </label>
             <input
-              name="password"
               type="password"
-              className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-4 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+              name="password"
               placeholder="••••••••"
+              className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 text-sm"
+              required
             />
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
+          <div className="flex items-center justify-between text-xs">
+            <label className="flex items-center text-slate-400">
               <input
-                name="remember-me"
                 type="checkbox"
-                className="h-4 w-4 text-cyan-500 focus:ring-cyan-500 border-slate-600 rounded bg-slate-700"
+                className="mr-1.5 h-3 w-3 rounded border-slate-600 bg-slate-700 text-cyan-500 focus:ring-cyan-500"
               />
-              <label
-                htmlFor="remember-me"
-                className="ml-2 block text-sm text-slate-400">
-                Remember me
-              </label>
-            </div>
-
-            <div className="text-sm">
-              <Link
-                to={"/"}
-                className="font-medium text-cyan-400 hover:text-cyan-300">
-                Forgot password?
-              </Link>
-            </div>
+              Remember me
+            </label>
+            <Link to="/" className="text-cyan-400 hover:text-cyan-300">
+              Forgot password?
+            </Link>
           </div>
 
-          <div className="flex-3">
-            <button
-              type="submit"
-              className="btn w-full bg-cyan-500 hover:bg-cyan-400 text-white font-bold py-2 px-4 rounded-lg transition duration-300 cursor-pointer ">
-              Sign in
-            </button>
-          </div>
+          <button
+            type="submit"
+            className="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-medium py-2.5 rounded-lg transition duration-300 text-sm">
+            Sign In
+          </button>
         </form>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm text-slate-400">
-            Don't have an account?{" "}
-            <Link
-              to={"/registration"}
-              className="font-medium text-cyan-400 hover:text-cyan-300">
-              Sign up
-            </Link>
-          </p>
+        {/* Divider */}
+        <div className="relative my-4">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-slate-700"></div>
+          </div>
+          <div className="relative flex justify-center text-xs">
+            <span className="px-3 bg-slate-800/50 text-slate-400">
+              Or continue with
+            </span>
+          </div>
+        </div>
+
+        {/* Social Login */}
+        <div className="grid grid-cols-2 gap-3">
+          <button
+            onClick={handleGoogleLogin}
+            className="flex items-center justify-center gap-2 bg-white text-slate-800 hover:bg-slate-100 font-medium py-2 rounded-lg transition duration-300 text-xs">
+            <FaGoogle className="text-red-500" />
+            Google
+          </button>
+          <button
+            onClick={handleFacebookLogin}
+            className="flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 rounded-lg transition duration-300 text-xs">
+            <FaFacebook />
+            Facebook
+          </button>
+        </div>
+
+        {/* Footer */}
+        <div className="mt-5 text-center text-xs text-slate-400">
+          Don't have an account?{" "}
+          <Link
+            to="/registration"
+            className="text-cyan-400 hover:text-cyan-300 font-medium">
+            Sign up
+          </Link>
         </div>
       </div>
     </div>

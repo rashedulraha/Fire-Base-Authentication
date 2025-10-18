@@ -53,7 +53,7 @@ const Navbar = () => {
 
         <button className="bg-cyan-500 hover:bg-cyan-400 text-white  px-6 py-2 rounded-md font-semibold cursor-pointer transition  duration-300 transform hover:scale-105">
           {user ? (
-            <a onClick={handleSignOut}>Sign Out </a>
+            <a onClick={handleSignOut}>Logout </a>
           ) : (
             <Link to={"/login"}>Login</Link>
           )}

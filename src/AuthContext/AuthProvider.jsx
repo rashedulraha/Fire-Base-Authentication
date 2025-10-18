@@ -3,12 +3,15 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { auth } from "../FireBaseAuth/Firebase.init";
 import { useEffect, useState } from "react";
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
+
+  const [loading, setLoading] = useState(true);
 
   // ! get current user
 
@@ -22,10 +25,15 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
+  // ! sign out user
+  const signOutUser = () => {
+    return signOut(auth);
+  };
+
   useEffect(() => {
     const connections = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(user);
+      setLoading(false);
     });
 
     return () => {
@@ -37,6 +45,8 @@ const AuthProvider = ({ children }) => {
     createUser,
     signInUser,
     user,
+    signOutUser,
+    loading,
   };
 
   return <AuthContext value={authInfo}>{children}</AuthContext>;

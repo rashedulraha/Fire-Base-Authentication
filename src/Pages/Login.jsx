@@ -5,10 +5,11 @@ import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { signInUser, signInWithGoogle, signInWithFacebook } =
-    useContext(AuthContext);
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+
+  //!  handle login with email and password
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -25,21 +26,11 @@ const Login = () => {
       });
   };
 
+  // !handle google login
   const handleGoogleLogin = () => {
     signInWithGoogle()
       .then(() => {
         toast.success("Successfully logged in with Google");
-        navigate(location.state || "/");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
-  };
-
-  const handleFacebookLogin = () => {
-    signInWithFacebook()
-      .then(() => {
-        toast.success("Successfully logged in with Facebook");
         navigate(location.state || "/");
       })
       .catch((error) => {
@@ -103,7 +94,7 @@ const Login = () => {
 
           <button
             type="submit"
-            className="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-medium py-2.5 rounded-lg transition duration-300 text-sm">
+            className="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-medium py-2.5 rounded-lg transition duration-300 text-sm cursor-pointer">
             Sign In
           </button>
         </form>
@@ -128,9 +119,7 @@ const Login = () => {
             <FaGoogle className="text-red-500" />
             Google
           </button>
-          <button
-            onClick={handleFacebookLogin}
-            className="flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 rounded-lg transition duration-300 text-xs">
+          <button className="flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 rounded-lg transition duration-300 text-xs">
             <FaFacebook />
             Facebook
           </button>

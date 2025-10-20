@@ -11,9 +11,13 @@ import {
 import { Link } from "react-router";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
+import { auth } from "../FireBaseAuth/Firebase.init";
 
 const Profile = () => {
+  const { displayName, email, photoURL, emailVerified } = auth?.currentUser;
+
   const { LogoutUser } = useContext(AuthContext);
+
   const handleLogout = () => {
     LogoutUser();
     toast.success("Successfully Logout");
@@ -26,8 +30,8 @@ const Profile = () => {
         <div className="w-full ">
           <div className="bg-slate-800/50 backdrop-blur-sm  border border-slate-700 p-8 shadow-xl">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold text-white mb-2">
-                Your Profile
+              <h2 className="text-3xl font-bold text-white mb-2 ">
+                Welcome ! ❤
               </h2>
               <p className="text-slate-400">
                 View and manage your account information
@@ -38,7 +42,7 @@ const Profile = () => {
               <div className="flex flex-col items-center">
                 <div className="relative mb-4">
                   <img
-                    src=""
+                    src={photoURL}
                     alt="Profile"
                     className="w-24 h-24 rounded-full object-cover border-4 border-cyan-500/20"
                   />
@@ -63,7 +67,9 @@ const Profile = () => {
                         </div>
                         <div className="ml-3 ">
                           <p className="text-xs text-slate-400">Full Name</p>
-                          <p className="text-white font-medium">Name</p>
+                          <p className="text-white font-medium">
+                            {displayName}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -74,10 +80,8 @@ const Profile = () => {
                           <FaEnvelope />
                         </div>
                         <div className="ml-3 ">
-                          <p className="text-xs text-slate-400">
-                            Email Address
-                          </p>
-                          <p className="text-white font-medium">Email</p>
+                          <p className="text-xs text-slate-400">Email</p>
+                          <p className="text-white font-medium">{email}</p>
                         </div>
                       </div>
                     </div>

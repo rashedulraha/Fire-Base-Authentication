@@ -22,30 +22,29 @@ const AuthProvider = ({ children }) => {
 
   // ! get current user
 
-  //! create user
-  const createUser = (email, password) => {
+  //! Register user
+  const Register = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
-  // ! sign in user
-  const signInUser = (email, password) => {
+  // ! Login user
+  const LoginUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  //! register with google
-  const signInWithGoogle = () => {
+  //! Login with google
+  const LoginWithGoogle = () => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  // ! sign out user
-  const signOutUser = () => {
-    return signOut(auth);
+  // ! Login with github
+  const LogInWithGithub = () => {
+    return signInWithPopup(auth, githubProvider);
   };
 
-  // ! sign in with github
-
-  const signInGithub = () => {
-    return signInWithPopup(auth, githubProvider);
+  // ! Logout user
+  const LogoutUser = () => {
+    return signOut(auth);
   };
 
   useEffect(() => {
@@ -60,13 +59,13 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const authInfo = {
-    createUser,
-    signInUser,
+    Register,
+    LoginUser,
     user,
-    signOutUser,
+    LogoutUser,
     loading,
-    signInWithGoogle,
-    signInGithub,
+    LoginWithGoogle,
+    LogInWithGithub,
   };
 
   return <AuthContext value={authInfo}>{children}</AuthContext>;

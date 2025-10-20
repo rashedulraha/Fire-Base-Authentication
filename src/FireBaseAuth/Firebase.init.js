@@ -18,5 +18,5 @@ const app = initializeApp(firebaseConfig);
 // Initialize Firebase Authentication
 export const auth = getAuth(app);
 
-// Debug: Check if environment variables are loaded
-console.log("Firebase Config:", firebaseConfig);
+// // Debug: Check if environment variables are loaded
+// console.log("Firebase Config:", firebaseConfig);

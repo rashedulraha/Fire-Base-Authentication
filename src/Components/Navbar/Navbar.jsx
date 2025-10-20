@@ -2,23 +2,11 @@ import { Link, NavLink } from "react-router";
 import logo from "../../assets/firebase-logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthContext/AuthContext";
-import { toast } from "react-toastify";
+import { auth } from "../../FireBaseAuth/Firebase.init";
 
 const Navbar = () => {
-  const { user, signOutUser } = useContext(AuthContext);
-
-  const handleSignOut = () => {
-    signOutUser()
-      .then(() => {
-        console.log();
-        toast.success("successfully sign out");
-      })
-      .catch((error) => {
-        console.log(error.message);
-        toast.error(error.message);
-      });
-  };
-
+  const { user } = useContext(AuthContext);
+  const authUserInfo = auth?.currentUser?.photoURL;
   const navBarLink = (
     <>
       <div className="flex gap-5 items-center text-white text-lg ">
@@ -30,13 +18,13 @@ const Navbar = () => {
 
         {user && (
           <>
-            <NavLink to={"/profile"}>Profile</NavLink>
             <NavLink to={"/orders"}>Orders</NavLink>
           </>
         )}
       </div>
     </>
   );
+
   return (
     <div className="bg-slate-900/80 backdrop-blur-sm border-b border-slate-800 py-3 sticky top-0 z-50">
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -50,16 +38,25 @@ const Navbar = () => {
           <h3 className="font-bold text-white text-3xl">AuthFlow</h3>
         </div>
         <ul className="items-center gap-6 hidden  md:flex">{navBarLink}</ul>
-
-        {user ? (
-          <button className="btn loginButton" onClick={handleSignOut}>
-            Logout{" "}
-          </button>
-        ) : (
-          <Link className="btn loginButton" to={"/login"}>
-            Login
-          </Link>
-        )}
+        <div>
+          {user ? (
+            <Link to={"/profile"}>
+              <figure className="w-12 h-12 rounded-full overflow-hidden transition  duration-300 transform hover:scale-105">
+                <img
+                  className="w-full h-full object-cover"
+                  src={authUserInfo}
+                  alt="user profile"
+                />
+              </figure>
+            </Link>
+          ) : (
+            <Link
+              className="btn loginButton shadow-none border-none"
+              to={"/login"}>
+              Login
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );

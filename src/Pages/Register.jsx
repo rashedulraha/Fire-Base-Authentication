@@ -1,25 +1,35 @@
 import { useContext } from "react";
-import { FaArrowLeft, FaGoogle, FaFacebook } from "react-icons/fa";
-import { Link } from "react-router";
-import { FaMicrosoft } from "react-icons/fa";
-import { BsGithub } from "react-icons/bs";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link, useNavigate } from "react-router";
+
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
-  const { createUser, signInWithGoogle } = useContext(AuthContext);
+  const { Register } = useContext(AuthContext);
+  const Navigate = useNavigate();
 
   //
   const handleRegister = (event) => {
     event.preventDefault();
+    const displayName = event.target.name.value;
+    const photoURL = event.target.photo.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
+    console.log(displayName, photoURL, email, password);
 
-    //  call function to create user
-    createUser(email, password)
+    //!  Call function to create user
+    Register(email, password)
       .then((result) => {
-        console.log(result);
-        toast.success("successfully create account");
+        updateProfile(result?.user, { displayName, photoURL })
+          .then(() => {
+            toast.success("successfully create account");
+            Navigate("/profile");
+          })
+          .catch((error) => {
+            toast.error(error.message);
+          });
       })
       .catch((error) => {
         console.log("Error find out :", error);
@@ -41,20 +51,34 @@ const Register = () => {
         <p className="text-slate-400 mb-4">Sign up to get started</p>
 
         <form onSubmit={handleRegister} className="space-y-3">
-          <div>
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium text-slate-300 mb-1">
-              Full Name
-            </label>
-            <input
-              type="text"
-              name="name"
-              className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-sm"
-              placeholder="Full Name"
-            />
+          <div className="flex items-center justify-between gap-5">
+            <div>
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium text-slate-300 mb-1">
+                Full Name
+              </label>
+              <input
+                type="text"
+                name="name"
+                className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-sm"
+                placeholder="Full Name"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="website"
+                className="block text-sm font-medium text-slate-300 mb-1">
+                Photo URL
+              </label>
+              <input
+                type="url"
+                name="photo"
+                className="w-full bg-slate-700/50 border border-slate-600 rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent text-sm"
+                placeholder="Photo URL"
+              />
+            </div>
           </div>
-
           <div>
             <label
               htmlFor="email"

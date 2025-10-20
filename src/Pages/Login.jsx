@@ -7,7 +7,9 @@ import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 
 const Login = () => {
-  const { signInUser, signInWithGoogle } = useContext(AuthContext);
+  const { LoginUser, LoginWithGoogle, LogInWithGithub } =
+    useContext(AuthContext);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,20 +19,18 @@ const Login = () => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
-
-    sigsnInUser(email, password)
+    LoginUser(email, password)
       .then(() => {
-        toast.success("Successfully logged in");
-        navigate(location.state || "/");
+        toast.success("Successfully login");
       })
-      .catch((error) => {
-        toast.error(error.message);
+      .catch((e) => {
+        toast.error(e.message);
       });
   };
 
-  // !handle google login
-  const handleGoogleLogin = () => {
-    signInWithGoogle()
+  // !handle Login with Google
+  const handleLoginWithGoogle = () => {
+    LoginWithGoogle()
       .then(() => {
         toast.success("Successfully logged in with Google");
         navigate(location.state || "/");
@@ -38,6 +38,32 @@ const Login = () => {
       .catch((error) => {
         toast.error(error.message);
       });
+  };
+  // !handle Login with Github
+  const handleLoginWithGithub = () => {
+    LogInWithGithub()
+      .then(() => {
+        toast.success("Successfully logged in with github");
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
+  // !handle Login with Facebook
+  // const handleLoginWithFacebook = () => {
+  //   LogInWithGithub()
+  //     .then(() => {
+  //       toast.success("Successfully logged in with github");
+  //       navigate(location.state || "/");
+  //     })
+  //     .catch((error) => {
+  //       toast.error(error.message);
+  //     });
+  // };
+
+  const handleNavigate = () => {
+    navigate("/");
   };
 
   return (
@@ -95,6 +121,7 @@ const Login = () => {
           </div>
 
           <button
+            onClick={handleNavigate}
             type="submit"
             className="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-medium py-2.5 rounded-lg transition duration-300 text-sm cursor-pointer">
             Sign In
@@ -116,22 +143,22 @@ const Login = () => {
         {/* Social Login */}
         <div className="grid grid-cols-2 gap-3">
           <button
-            onClick={handleGoogleLogin}
+            title="Click and login your account with Google"
+            onClick={handleLoginWithGoogle}
             className="flex items-center justify-center gap-2 bg-white text-slate-800 hover:bg-slate-100 font-medium py-2 rounded-lg transition duration-300 text-xs">
             <FaGoogle />
             Google
           </button>
-          <button
-            onClick={handleGoogleLogin}
-            className="flex items-center justify-center gap-2 bg-white text-slate-800 hover:bg-slate-100 font-medium py-2 rounded-lg transition duration-300 text-xs">
+          <button className="flex items-center justify-center gap-2 bg-white text-slate-800 hover:bg-slate-100 font-medium py-2 rounded-lg transition duration-300 text-xs">
             <FaMicrosoft />
-            Google
+            Microsoft
           </button>
           <button
-            onClick={handleGoogleLogin}
+            title="Click and login your account with Github"
+            onClick={handleLoginWithGithub}
             className="flex items-center justify-center gap-2 bg-white text-slate-800 hover:bg-slate-100 font-medium py-2 rounded-lg transition duration-300 text-xs">
             <BsGithub />
-            Google
+            Github
           </button>
           <button className="flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 rounded-lg transition duration-300 text-xs">
             <FaFacebook />

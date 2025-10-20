@@ -35,7 +35,9 @@ const Navbar = () => {
               className="w-[55px] rounded-full border-2 border-cyan-500"
             />
           </figure>
-          <h3 className="font-bold text-white text-3xl">AuthFlow</h3>
+          <h3 className="font-bold text-white text-3xl">
+            <a href="/">AuthFlow</a>
+          </h3>
         </div>
         <ul className="items-center gap-6 hidden  md:flex">{navBarLink}</ul>
         <div>

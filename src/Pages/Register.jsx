@@ -4,11 +4,11 @@ import { Link, useNavigate } from "react-router";
 
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
-import { updateProfile } from "firebase/auth";
+import { sendEmailVerification, updateProfile } from "firebase/auth";
 
 const Register = () => {
   const { Register } = useContext(AuthContext);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   //
   const handleRegister = (event) => {
@@ -19,20 +19,59 @@ const Register = () => {
     const password = event.target.password.value;
     console.log(displayName, photoURL, email, password);
 
-    //!  Call function to create user
+    // //!  Call and register account
+    // Register(email, password)
+    //   .then((result) => {
+    //     const user = result?.user;
+
+    //     //! update profile
+    //     updateProfile(result?.user, { displayName, photoURL })
+    //       .then(() => {
+    //         //! send to verification email
+    //         sendEmailVerification(result?.user)
+    //           .then(() => {})
+    //           .catch((error) => {
+    //             toast.error(error.message);
+    //           });
+    //         toast.success(
+    //           "successfully create account check your email inbox to verified your email account"
+    //         );
+    //         Navigate("/profile");
+
+    //         // Checking email verification
+    //         // if (result?.user.emailVerified === true) {
+    //         //   Navigate("/profile");
+    //         // } else {
+    //         //   Navigate("/login");
+    //         // }
+    //       })
+    //       .catch((error) => {
+    //         toast.error(error.message);
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     console.log("Error find out :", error);
+    //     toast.error(error.message);
+    //   });
+
+    //
+
     Register(email, password)
       .then((result) => {
-        updateProfile(result?.user, { displayName, photoURL })
-          .then(() => {
-            toast.success("successfully create account");
-            Navigate("/profile");
-          })
-          .catch((error) => {
-            toast.error(error.message);
-          });
+        const user = result?.user;
+
+        return updateProfile(user, { displayName, photoURL }).then(() => user);
+      })
+      .then((user) => {
+        return sendEmailVerification(user);
+      })
+      .then(() => {
+        toast.success(
+          "Account created successfully  Check your email inbox to verify your account"
+        );
+        navigate("/login");
       })
       .catch((error) => {
-        console.log("Error find out :", error);
         toast.error(error.message);
       });
   };

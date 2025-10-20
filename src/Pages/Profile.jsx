@@ -58,56 +58,59 @@ const Profile = () => {
               <div className="flex items-start  gap-5">
                 {/* User  Profile Information */}
                 <div className="flex-3">
-                  {/*  */}
-                  <div className=" space-y-3">
-                    <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600">
-                      <div className="flex items-start">
-                        <div className="mt-1 text-cyan-400">
-                          <FaUser />
+                  <div className=" flex items-start w-full space-x-5    ">
+                    <div className="w-2/3 space-y-5">
+                      <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600">
+                        <div className="flex items-start">
+                          <div className="mt-1 text-cyan-400">
+                            <FaUser />
+                          </div>
+                          <div className="ml-3 ">
+                            <p className="text-xs text-slate-400">Full Name</p>
+                            <p className="text-white font-medium">
+                              {displayName}
+                            </p>
+                          </div>
                         </div>
-                        <div className="ml-3 ">
-                          <p className="text-xs text-slate-400">Full Name</p>
-                          <p className="text-white font-medium">
-                            {displayName}
-                          </p>
+                      </div>
+                      <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600">
+                        <div className="flex items-start">
+                          <div className="mt-1 text-cyan-400">
+                            <FaEnvelope />
+                          </div>
+                          <div className="ml-3 ">
+                            <p className="text-xs text-slate-400">Email</p>
+                            <p className="text-white font-medium">{email}</p>
+                          </div>
                         </div>
                       </div>
                     </div>
-
-                    <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600">
-                      <div className="flex items-start">
-                        <div className="mt-1 text-cyan-400">
-                          <FaEnvelope />
-                        </div>
-                        <div className="ml-3 ">
-                          <p className="text-xs text-slate-400">Email</p>
-                          <p className="text-white font-medium">{email}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600">
-                      <div className="flex items-start">
-                        <div className="mt-1 text-cyan-400">
-                          <FaUser />
-                        </div>
-                        <div className="ml-3 ">
-                          <p className="text-xs text-slate-400">
-                            Account Status
-                          </p>
-                          <p className="text-green-400 font-medium">Status</p>
+                    <div className="flex-1 space-y-5">
+                      <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600">
+                        <div className="flex items-start">
+                          <div className="mt-1 text-cyan-400">
+                            <FaUser />
+                          </div>
+                          <div className="ml-3 ">
+                            <p className="text-xs text-slate-400">
+                              Account Status
+                            </p>
+                            <p className="text-green-400 font-medium">Status</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600">
-                      <div className="flex items-start">
-                        <div className="mt-1 text-cyan-400">
-                          <FaUser />
-                        </div>
-                        <div className="ml-3 ">
-                          <p className="text-xs text-slate-400">Member Since</p>
-                          <p className="text-white font-medium">Members</p>
+                      <div className="bg-slate-700/30 rounded-xl p-4 border border-slate-600">
+                        <div className="flex items-start">
+                          <div className="mt-1 text-cyan-400">
+                            <FaUser />
+                          </div>
+                          <div className="ml-3 ">
+                            <p className="text-xs text-slate-400">
+                              Member Since
+                            </p>
+                            <p className="text-white font-medium">Members</p>
+                          </div>
                         </div>
                       </div>
                     </div>

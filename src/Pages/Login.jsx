@@ -19,8 +19,15 @@ const Login = () => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
+
     LoginUser(email, password)
-      .then(() => {
+      .then((result) => {
+        console.log(result);
+        if (result.user?.emailVerified === false) {
+          toast.error("please verified your email");
+          return;
+        }
+
         toast.success("Successfully login");
       })
       .catch((e) => {

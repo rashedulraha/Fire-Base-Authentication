@@ -13,6 +13,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: MainLayout,
+    hydrateFallbackElement: (
+      <span className="loading loading-bars loading-xl"></span>
+    ),
     children: [
       {
         index: true,

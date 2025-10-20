@@ -51,13 +51,15 @@ const Navbar = () => {
         </div>
         <ul className="items-center gap-6 hidden  md:flex">{navBarLink}</ul>
 
-        <button className="bg-cyan-500 hover:bg-cyan-400 text-white  px-6 py-2 rounded-md font-semibold cursor-pointer transition  duration-300 transform hover:scale-105">
-          {user ? (
-            <a onClick={handleSignOut}>Logout </a>
-          ) : (
-            <Link to={"/login"}>Login</Link>
-          )}
-        </button>
+        {user ? (
+          <button className="btn loginButton" onClick={handleSignOut}>
+            Logout{" "}
+          </button>
+        ) : (
+          <Link className="btn loginButton" to={"/login"}>
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );

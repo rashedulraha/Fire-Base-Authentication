@@ -17,3 +17,7 @@ p {
 .active {
   @apply text-cyan-400;
 }
+
+.loginButton {
+  @apply bg-cyan-500 hover:bg-cyan-400 text-white  px-6 py-2 rounded-md font-semibold cursor-pointer transition  duration-300 transform hover:scale-105;
+}

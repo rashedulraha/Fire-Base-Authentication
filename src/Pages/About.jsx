@@ -223,63 +223,6 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-
-      {/* Team Section */}
-      <div className="py-20">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12 text-center">
-            Meet Our Team
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                alt="Team Member"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Alex Johnson</h3>
-                <p className="text-cyan-400 mb-3">CEO & Founder</p>
-                <p className="text-slate-400 text-sm">
-                  Visionary leader with a passion for technology and innovation.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxJIkRR5xaxAjrWIeuiGkZBj4cMK7JFkB2CQ&s"
-                alt="Team Member"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Sarah Williams</h3>
-                <p className="text-cyan-400 mb-3">Head of Design</p>
-                <p className="text-slate-400 text-sm">
-                  Creative professional dedicated to crafting exceptional user
-                  experiences.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl border border-slate-700 overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80"
-                alt="Team Member"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-2">Michael Chen</h3>
-                <p className="text-cyan-400 mb-3">CTO</p>
-                <p className="text-slate-400 text-sm">
-                  Technical expert with over 10 years of experience in software
-                  development.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

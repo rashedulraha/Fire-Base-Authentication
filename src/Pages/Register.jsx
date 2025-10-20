@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { FaArrowLeft, FaGoogle, FaFacebook } from "react-icons/fa";
 import { Link } from "react-router";
+import { FaMicrosoft } from "react-icons/fa";
+import { BsGithub } from "react-icons/bs";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 
@@ -21,19 +23,6 @@ const Register = () => {
       })
       .catch((error) => {
         console.log("Error find out :", error);
-        toast.error(error.message);
-      });
-  };
-
-  // Handle Google login
-  const handleGoogleLogin = () => {
-    signInWithGoogle()
-      .then((result) => {
-        console.log(result);
-        toast.success("Successfully registered with Google");
-      })
-      .catch((error) => {
-        console.log(error.message);
         toast.error(error.message);
       });
   };
@@ -119,37 +108,11 @@ const Register = () => {
           </button>
         </form>
 
-        <div className="mt-4">
-          <div className="relative">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-slate-700"></div>
-            </div>
-            <div className="relative flex justify-center text-xs">
-              <span className="px-2 bg-slate-800/50 text-slate-400">
-                Or sign up with
-              </span>
-            </div>
-          </div>
-
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            <button
-              onClick={handleGoogleLogin}
-              className="flex items-center justify-center gap-1 bg-white text-slate-800 hover:bg-slate-100 font-medium py-2 px-3 rounded-lg transition duration-300 text-xs">
-              <FaGoogle className="text-red-500" />
-              Google
-            </button>
-            <button className="flex items-center justify-center gap-1 bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 px-3 rounded-lg transition duration-300 text-xs">
-              <FaFacebook />
-              Facebook
-            </button>
-          </div>
-        </div>
-
         <div className="mt-4 text-center text-xs">
           <p className="text-slate-400">
             Already have an account?{" "}
             <Link to={"/login"} className="text-cyan-400 hover:text-cyan-300">
-              Sign in
+              Login
             </Link>
           </p>
         </div>

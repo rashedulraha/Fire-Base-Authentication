@@ -1,6 +1,8 @@
 import { useContext } from "react";
 import { FaArrowLeft, FaGoogle, FaFacebook } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router";
+import { FaMicrosoft } from "react-icons/fa";
+import { BsGithub } from "react-icons/bs";
 import { AuthContext } from "../AuthContext/AuthContext";
 import { toast } from "react-toastify";
 
@@ -16,7 +18,7 @@ const Login = () => {
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    signInUser(email, password)
+    sigsnInUser(email, password)
       .then(() => {
         toast.success("Successfully logged in");
         navigate(location.state || "/");
@@ -116,7 +118,19 @@ const Login = () => {
           <button
             onClick={handleGoogleLogin}
             className="flex items-center justify-center gap-2 bg-white text-slate-800 hover:bg-slate-100 font-medium py-2 rounded-lg transition duration-300 text-xs">
-            <FaGoogle className="text-red-500" />
+            <FaGoogle />
+            Google
+          </button>
+          <button
+            onClick={handleGoogleLogin}
+            className="flex items-center justify-center gap-2 bg-white text-slate-800 hover:bg-slate-100 font-medium py-2 rounded-lg transition duration-300 text-xs">
+            <FaMicrosoft />
+            Google
+          </button>
+          <button
+            onClick={handleGoogleLogin}
+            className="flex items-center justify-center gap-2 bg-white text-slate-800 hover:bg-slate-100 font-medium py-2 rounded-lg transition duration-300 text-xs">
+            <BsGithub />
             Google
           </button>
           <button className="flex items-center justify-center gap-2 bg-blue-600 text-white hover:bg-blue-700 font-medium py-2 rounded-lg transition duration-300 text-xs">
@@ -131,7 +145,7 @@ const Login = () => {
           <Link
             to="/registration"
             className="text-cyan-400 hover:text-cyan-300 font-medium">
-            Sign up
+            Register
           </Link>
         </div>
       </div>

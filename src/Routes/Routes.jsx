@@ -11,7 +11,7 @@ import Dashboard from "../Components/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+  path: "/",
     Component: MainLayout,
     hydrateFallbackElement: (
       <span className="loading loading-bars loading-xl"></span>

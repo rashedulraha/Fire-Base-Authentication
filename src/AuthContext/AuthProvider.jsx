@@ -4,6 +4,7 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendEmailVerification,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -11,25 +12,49 @@ import {
 
 import { auth } from "../FireBaseAuth/Firebase.init";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  //
 
+  const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
-  // ! get current user
-
   //! Register user
-  const Register = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
+  const Register = async (email, password) => {
+    try {
+      const userInformation = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await sendEmailVerification(userInformation?.user);
+      toast.success("Registration successfully , please verify  your email");
+      return userInformation;
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   // ! Login user
-  const LoginUser = (email, password) => {
-    return signInWithEmailAndPassword(auth, email, password);
+  const LoginUser = async (email, password) => {
+    try {
+      const userInformation = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      if (!userInformation?.user?.emailVerified) {
+        toast.error("Please verify your email before logging in.");
+        return;
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   //! Login with google
@@ -68,7 +93,9 @@ const AuthProvider = ({ children }) => {
     LogInWithGithub,
   };
 
-  return <AuthContext value={authInfo}>{children}</AuthContext>;
+  return (
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

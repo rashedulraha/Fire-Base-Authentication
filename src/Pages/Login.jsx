@@ -17,22 +17,23 @@ const Login = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
+
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    LoginUser(email, password)
-      .then((result) => {
-        console.log(result);
-        if (result.user?.emailVerified === false) {
-          toast.error("please verified your email");
-          return;
-        }
+    LoginUser(email, password);
+    // .then((result) => {
+    //   console.log(result);
+    //   if (result.user?.emailVerified === false) {
+    //     toast.error("please verified your email");
+    //     return;
+    //   }
 
-        toast.success("Successfully login");
-      })
-      .catch((e) => {
-        toast.error(e.message);
-      });
+    //   toast.success("Successfully login");
+    // })
+    // .catch((e) => {
+    //   toast.error(e.message);
+    // });
   };
 
   // !handle Login with Google
@@ -68,10 +69,6 @@ const Login = () => {
   //       toast.error(error.message);
   //     });
   // };
-
-  const handleNavigate = () => {
-    navigate("/");
-  };
 
   return (
     <div className="h-screen bg-gradient-to-br from-slate-900 to-slate-800 flex items-center justify-center p-4">
@@ -128,7 +125,6 @@ const Login = () => {
           </div>
 
           <button
-            onClick={handleNavigate}
             type="submit"
             className="w-full bg-cyan-500 hover:bg-cyan-400 text-white font-medium py-2.5 rounded-lg transition duration-300 text-sm cursor-pointer">
             Sign In

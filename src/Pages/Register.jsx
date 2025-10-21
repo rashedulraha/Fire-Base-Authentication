@@ -3,21 +3,20 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
 
 import { AuthContext } from "../AuthContext/AuthContext";
-import { toast } from "react-toastify";
-import { sendEmailVerification, updateProfile } from "firebase/auth";
+// import { toast } from "react-toastify";
+// import { sendEmailVerification, updateProfile } from "firebase/auth";
 
 const Register = () => {
   const { Register } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  //
   const handleRegister = (event) => {
     event.preventDefault();
     const displayName = event.target.name.value;
     const photoURL = event.target.photo.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    console.log(displayName, photoURL, email, password);
+    // console.log(displayName, photoURL, email, password);
 
     // //!  Call and register account
     // Register(email, password)
@@ -56,24 +55,24 @@ const Register = () => {
 
     //
 
-    Register(email, password)
-      .then((result) => {
-        const user = result?.user;
+    Register(email, password).then((result) => {
+      const user = result?.user;
+      console.log(user);
 
-        return updateProfile(user, { displayName, photoURL }).then(() => user);
-      })
-      .then((user) => {
-        return sendEmailVerification(user);
-      })
-      .then(() => {
-        toast.success(
-          "Account created successfully  Check your email inbox to verify your account"
-        );
-        navigate("/login");
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
+      navigate("/login");
+    });
+    // .then((user) => {
+    //   return sendEmailVerification(user);
+    // })
+    // .then(() => {
+    //   toast.success(
+    //     "Account created successfully  Check your email inbox to verify your account"
+    //   );
+    //   navigate("/login");
+    // })
+    // .catch((error) => {
+    //   toast.error(error.message);
+    // });
   };
 
   return (
